@@ -1,9 +1,8 @@
 #!/bin/sh
 
-DATE=`/bin/date`
 cd /home/micrl/MICRL_Homepage/MICRL-Server
 echo '## Welcom to the Secret Homepage of MICRL!' > ./README.md
-echo ${DATE} >> ./README.md
+sbin/ifconfig -a | grep inet | grep -v 127.0.0.1 | grep -v inet6 | grep 175.159 | awk '{print $2}' | tr -d "addr:" >> ./README.md
 git add -A
 git commit -a --allow-empty-message -m ''
 git push -u origin master
