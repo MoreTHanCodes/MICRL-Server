@@ -7,4 +7,4 @@ echo '# Server 1:' >> ./README.md
 echo ${NEW_IP} >> ./README.md
 git add -A
 git commit -a --allow-empty-message -m ''
-git push -u origin master
+git push -u origin stable
