@@ -5,7 +5,8 @@ import time
 class Updater(object):
     def __init__(self):
         self.ip = self.get_ip()
-        self.update_ip()
+        self.write_ip()
+        self.push()
 
     def get_ip(self):
         ip_str = os.popen("ifconfig -a | grep inet | grep -v inet6 | grep -v 127.0.0.1 | grep 175.159 | awk '{print $2}'").readlines()[0]
