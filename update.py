@@ -1,9 +1,11 @@
+import argparse
 import os
 import time
 
 
 class Updater(object):
-    def __init__(self):
+    def __init__(self, server_num=1):
+        self.server_num = server_num
         self.ip = self.get_ip()
         self.write_ip()
         self.push()
@@ -30,7 +32,7 @@ class Updater(object):
     def write_ip(self):
         f = open("README.md", "r+")
         flist = f.readlines()
-        flist[4] = self.ip + "\n"
+        flist[2 * self.server_num] = self.ip + "\n"
         f = open("README.md", "w+")
         f.writelines(flist)
         f.close()
@@ -45,5 +47,10 @@ class Updater(object):
 
 
 if __name__ == '__main__':
-    updater = Updater()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        '--server_num', default=1, type=int
+    )
+    args = parser.parse_args()
+    updater = Updater(args.server_num)
     updater.run()
