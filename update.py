@@ -41,7 +41,7 @@ class Updater(object):
     def push(self):
         os.system("git add -A")
         os.system("git commit -a --allow-empty-message -m ''")
-        os.system("git push -u origin stable")
+        os.system("git push -u origin gh-pages")
 
 
 if __name__ == '__main__':
