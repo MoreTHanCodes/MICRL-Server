@@ -30,7 +30,7 @@ class Updater(object):
     def write_ip(self):
         f = open("README.md", "r+")
         flist = f.readlines()
-        flist[2] = self.ip + "\n"
+        flist[4] = self.ip + "\n"
         f = open("README.md", "w+")
         f.writelines(flist)
         f.close()
