@@ -16,12 +16,17 @@ class Updater(object):
 
     def run(self):
         while True:
-            if self.get_ip() != self.ip:
-                print self.ip, " --> ", self.get_ip()
-                self.ip = self.get_ip()
-                self.update_ip()
-            else:
-                print "IP: ", self.ip
+            try:
+                ip = self.get_ip()
+                if ip != self.ip:
+                    print self.ip, " --> ", self.get_ip()
+                    self.ip = self.get_ip()
+                    self.update_ip()
+                else:
+                    print "IP: ", self.ip
+            except:
+                print "Cannot get IP ...."
+            
             time.sleep(10)
 
     def update_ip(self):
