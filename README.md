@@ -1,6 +1,6 @@
 ## Welcome to the Secret Homepage of MICRL!
 # Server 1:
-175.159.211.178
+175.159.211.246
 
 175.159.68.171
 
