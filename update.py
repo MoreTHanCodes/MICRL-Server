@@ -7,11 +7,12 @@ class Updater(object):
     def __init__(self, server_num=1):
         self.server_num = server_num
         self.ip = self.get_ip()
+        self.pull()
         self.write_ip()
         self.push()
 
     def get_ip(self):
-        ip_str = os.popen("ifconfig -a | grep inet | grep -v inet6 | grep -v 127.0.0.1 | grep Mask:255.255.254.0 | awk '{print $2}'").readlines()[0]
+        ip_str = os.popen("ifconfig -a | grep inet | grep -v inet6 | grep -v 127.0.0.1 | grep 175.159. | awk '{print $2}'").readlines()[0]
         return ip_str[5:20]
 
     def run(self):
