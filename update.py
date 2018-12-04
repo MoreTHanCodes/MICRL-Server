@@ -12,7 +12,7 @@ class Updater(object):
         self.push()
 
     def get_ip(self):
-        ip_str = os.popen("ifconfig -a | grep inet | grep -v inet6 | grep -v 127.0.0.1 | grep 175.159. | awk '{print $2}'").readlines()[0]
+        ip_str = os.popen("ifconfig -a | grep inet | grep -v inet6 | grep -v 127.0.0.1 | grep 175.159. | awk '{print $2}'").read().splitlines()[0]
         return ip_str[5:20]
 
     def run(self):
