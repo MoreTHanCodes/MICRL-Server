@@ -7,6 +7,7 @@ class Updater(object):
     def __init__(self, server_num=1):
         self.server_num = server_num
         self.ip = self.get_ip()
+        self.stop_num = 0
         self.pull()
         self.write_ip()
         self.push()
@@ -14,6 +15,13 @@ class Updater(object):
     def get_ip(self):
         ip_str = os.popen("ifconfig -a | awk '/wlx/{nr[NR]; nr[NR+1]}; NR in nr' | grep inet | grep -v inet6 | awk '{print $2}'").read().splitlines()[0]
         return ip_str[5:20]
+
+    def _restart_wifi_module(self):
+        os.system("nmcli networking off")
+        print "Shut down WIFI ..."
+        time.sleep(3)
+        os.system("nmcli networking on")
+        print "Restart WIFI ..."
 
     def run(self):
         while True:
@@ -25,8 +33,13 @@ class Updater(object):
                     self.update_ip()
                 else:
                     print "IP: ", self.ip
+                self.stop_num = 0
             except:
                 print "Cannot get IP ...."
+                self.stop_num += 1
+                if self.stop_num > 5:
+                    self._restart_wifi_module()
+                    self.stop_num = 0
             
             time.sleep(10)
 
