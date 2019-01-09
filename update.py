@@ -13,7 +13,7 @@ class Updater(object):
         self.push()
 
     def get_ip(self):
-        ip_str = os.popen("ifconfig -a | awk '/enp3s0/{nr[NR]; nr[NR+1]}; NR in nr' | grep inet | grep -v inet6 | awk '{print $2}'").read().splitlines()[0]
+        ip_str = os.popen("ifconfig -a | awk '/wlxf/{nr[NR]; nr[NR+1]}; NR in nr' | grep inet | grep -v inet6 | awk '{print $2}'").read().splitlines()[0]
         return ip_str[5:20]
 
     def _restart_wifi_module(self):
